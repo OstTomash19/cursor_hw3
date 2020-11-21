@@ -19,7 +19,7 @@ const getSalaryAfterTax = function (dirtySalary, ...taxes) {
 };
 
 const getRandomNumber = (firstNumber, secondNumber) => {
-    return Math.floor(Math.random() * (Math.floor(secondNumber) - Math.ceil(firstNumber) + 1)) + Math.ceil(firstNumber);
+    return Math.floor((Math.random() * secondNumber) + firstNumber);
 };
 
 const countLetter =  (letter, word) => {
