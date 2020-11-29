@@ -1,36 +1,29 @@
-const getMaxDigit = (numbers) => {
-    const arr = String(numbers).split('').sort();
-    return +arr[arr.length - 1];
-};
+const getMaxDigit = (number) => Math.max(... Array.from(String(number)).map((item) => parseInt(item)));
 
 const getDegreeOfNumber = (number, degree) => {
     let degreeOfNumber = 1;
-    for(let i = 0; i < degree; i++) degreeOfNumber *= number;
+    for(let i = 0; i < Math.abs(degree); i++) {
+        degreeOfNumber *= number;
+    }
+    
+    if(degree < 0) degreeOfNumber = 1 / degreeOfNumber;
+
     return degreeOfNumber;
 };
 
-const makeTheFirstLetterUpperCase = (name) => {
-    return name[0].toUpperCase().concat(name.slice(1, name.length).toLowerCase());
-};
+const makeTheFirstLetterUpperCase = (name) => name[0].toUpperCase().concat(name.slice(1, name.length).toLowerCase());
 
-const getSalaryAfterTax = function (dirtySalary, ...taxes) {
-    const sumOfTax =  taxes.reduce((total, current) => total + current);
-    return dirtySalary - ((dirtySalary/100) * sumOfTax);
-};
+const getSalaryAfterTax = (dirtySalary, ...taxes) => dirtySalary - ((dirtySalary/100) * taxes.reduce((total, current) => total + current));
 
-const getRandomNumber = (firstNumber, secondNumber) => {
-    return Math.floor((Math.random() * secondNumber) + firstNumber);
-};
+const getRandomNumber = (firstNumber, secondNumber) => Math.floor((Math.random() * secondNumber) + firstNumber);
 
 const countLetter =  (letter, word) => {
-    const arrayOfChars = word.toLowerCase().split('');
     let counter = 0;
-
-    for(let char of arrayOfChars) {
+    word.toLowerCase().split('').forEach(char => {
         if(char === letter.toLowerCase()) {
             counter++;
         } 
-    }
+    });
     return counter;
 };
 
@@ -56,13 +49,11 @@ const getRandomPassword = (numberOfDigit = 8) => {
 };
 
 const deleteLetters = (letter, word) => {
-    const arrayOfLetters = word.split('');
     let arrayWithoutSomeLetter = '';
 
-    for(let item of arrayOfLetters) {
-        if(item === letter) continue;
-        arrayWithoutSomeLetter += item;
-    }
+    word.split('').forEach(oneLetter => {
+        if(oneLetter !== letter) arrayWithoutSomeLetter += oneLetter;
+    });
     return arrayWithoutSomeLetter;
 };
 
@@ -79,20 +70,19 @@ const isPalyndrom = (word) => {
 };
 
 const deleteDuplicateLetter = (str) => {
-    const arrayOfString = str.toLowerCase().split('');
     let arrayWithoutDuplicate = '';
     
-    for(let letter of arrayOfString){
+    str.toLowerCase().split('').forEach(letter => {
         if(str.toLowerCase().indexOf(letter) === str.toLowerCase().lastIndexOf(letter)){
             arrayWithoutDuplicate += letter;
         }
-    }
+    });
 
     return arrayWithoutDuplicate;
 };
 
 console.log(`Функція №1: ${getMaxDigit(1236)};
-Функція №2: ${getDegreeOfNumber(7,3)};
+Функція №2: ${getDegreeOfNumber(7,2)};
 Функція №3: ${makeTheFirstLetterUpperCase('cUrSoR')};
 Функція №4: ${getSalaryAfterTax(1000, 18, 1.5)};
 Функція №5: ${getRandomNumber(1, 100)};
